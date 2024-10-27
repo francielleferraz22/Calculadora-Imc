@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <style>
+          *{
+        margin: 0;
+        padding: 0;
+    }
+    .fundo{
+    background-image: linear-gradient(25deg, white,lightBlue);
+    height: 100vh;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    text-align: center;
+    }
+    .name{
+      font-size: 17px;  
+    }  .calculadora{
+        position: absolute;
+        background-color: #6495ED;
+        top: 50%;
+        bottom: 0%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 20px;
+        padding: 20px;
+        height: 310px;
+        width: 250px;
+    }
+    
+    #peso{
+        font-size: 17px;
+        border-radius: 5px;
+    }
+    #altura{
+        font-size: 17px;
+        border-radius: 5px;
+        margin-bottom: 0;
+    }
+    .botao{
+        width: 80px;
+        height: 30px;
+        font-size: 18px;
+        cursor: pointer;
+        margin: 2px;
+        margin-bottom: 0;
+        background-color: #4169E1;
+        border: none;
+        color: #ffffff;
+        text-align: center;
+        border-radius: 5px;
+    }
+    .botao:hover{
+        background-color: #4682B4;
+    }
+    </style>
+</head>
+<body>
+<div class="fundo">
+<div class="calculadora">
+    <br />
+<h1 id="name">Calculadora de IMC</h1><br />
+<h3>Peso: </h3>
+<input id="peso" placeholder="Digite o seu peso" type="number" step="0.01" /><br /><br /><br />
+<h3>Altura: </h3>
+<input id="altura" placeholder="Digite a sua altura" type="number" step="0.01" /><br /><br /><br />
+<button class="botao" onclick="calcularIMC()">Calcular</button><br /><br />
+<p></p>
+</div>
+</div>
+<script>
+    function calcularIMC(){
+        const peso = parseFloat(document.getElementById("peso").value);
+        const altura = parseFloat(document.getElementById("altura").value);
+        
+        const imc = (peso / (altura * altura)).toFixed(1);
+        document.querySelector("p").innerHTML = imc + ' ' + classificacao(imc);
+    }
+    
+    function classificacao(imc) {
+        if(imc < 18.5)
+        return 'Magreza';
+        
+        if (imc >=18.5 && imc <= 24.9)
+        return 'Normal';
+        
+        if(imc >= 25 && imc <= 29.9)
+        return 'Sobrepeso I';
+        
+        if(imc >= 30 && imc <= 39.9)
+        return 'Obesidade II';
+        
+        if(imc >= 40)
+        return 'Obesidade III';
+    }
+</script>
+</body>
+</html>
